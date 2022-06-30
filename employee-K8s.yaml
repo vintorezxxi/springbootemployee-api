@@ -17,5 +17,16 @@ spec:
         - name: springboot-employee-api-apples
           image: pasapples/springbootemployee:multi-stage-add-layers
           imagePullPolicy: Always
+          securityContext:
+            capabilities:
+              drop:
+                - all
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            readOnlyRootFilesystem: true
+          resources:
+            limits:
+              memory: 128M
+              cpu: 500m
           ports:
             - containerPort: 8080
